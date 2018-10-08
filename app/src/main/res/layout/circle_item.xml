@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="4dp"
+    android:layout_marginTop="4dp"
+    android:background="@color/viewBackground"
+    app:cardElevation="1dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/profile_image"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:paddingBottom="8dp"
+            android:src="@mipmap/ic_launcher" />
+
+        <TextView
+            android:id="@+id/nickname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:layout_toRightOf="@+id/profile_image"
+            android:text="夏风爽起～心飞扬"
+            android:textColor="@color/Deep_Orange"
+            android:textSize="@dimen/circle_nickname"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/timer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/nickname"
+            android:layout_marginStart="6dp"
+            android:layout_marginTop="4dp"
+            android:layout_toRightOf="@id/profile_image"
+            android:text="8小时前"
+            android:textColor="@color/Orange"
+            android:textSize="@dimen/circle_time" />
+
+        <jaydenxiao.com.expandabletextview.ExpandableTextView
+            android:id="@+id/etv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/profile_image"
+            android:paddingBottom="8dp"
+            app:animDuration="200"
+            app:collapseDrawable="@drawable/icon_green_arrow_down"
+            app:collapseExpandGrarity="right"
+            app:collapseExpandTextColor="@color/main_color"
+            app:contentTextColor="@color/gray"
+            app:contentTextSize="@dimen/circle_content"
+            app:expandDrawable="@drawable/icon_green_arrow_up"
+            app:maxCollapsedLines="3"
+            app:textCollapse="@string/collapse" />
+
+        <com.quickly.xqw.widget.MultiImageViewLayout
+            android:id="@+id/multi_image"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/etv"
+            android:paddingBottom="8dp" />
+
+        <RelativeLayout
+            android:id="@+id/footer"
+            android:layout_width="match_parent"
+            android:layout_height="24dp"
+            android:layout_below="@+id/multi_image">
+
+            <TextView
+                android:id="@+id/tv_views"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="浏览9999+次" />
+
+            <ImageView
+                android:id="@+id/comment_icon"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="50dp"
+                android:src="@drawable/ic_comment_white_24dp" />
+
+            <ImageView
+                android:id="@+id/zan_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:src="@drawable/ic_like_gray_24dp" />
+        </RelativeLayout>
+        <View
+            android:layout_below="@+id/footer"
+            android:id="@+id/action_divider"
+            android:layout_marginTop="8dp"
+            android:layout_width="match_parent"
+            android:background="@color/Grey300"
+            android:layout_height="1dp"/>
+
+        <com.quickly.xqw.widget.PraiseTextView
+            android:layout_below="@+id/action_divider"
+            android:id="@+id/praise_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"/>
+
+        <com.quickly.xqw.widget.CommentListTextView
+            android:layout_below="@+id/praise_view"
+            android:id="@+id/comment_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:visibility="gone"/>
+
+    </RelativeLayout>
+
+
+</android.support.v7.widget.CardView>
