@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 
 import java.util.List;
 
-public class CategoryAdapter extends PagerAdapter {
+public class  CategoryAdapter extends PagerAdapter {
 
     private List<View> mViewList;
 

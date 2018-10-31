@@ -17,6 +17,39 @@ public class SettingUtil {
         return SettingsUtilInstance.instance;
     }
 
+
+    public  String getSession(){
+        return setting.getString("session_key", "");
+    }
+
+    public void setSession(String session) {
+        setting.edit().putString("session_key", session).apply();
+    }
+
+    public String getUsername(){
+        return setting.getString("username","");
+    }
+
+    public void setUsername(String username) {
+        setting.edit().putString("username",username).apply();
+    }
+
+    public String getNickname(){
+        return setting.getString("nickname","");
+    }
+
+    public void setNickname(String nickname) {
+        setting.edit().putString("nickname",nickname).apply();
+    }
+
+    public String getAvatar(){
+        return setting.getString("avatar","");
+    }
+    public void setAvatar(String avatar) {
+        setting.edit().putString("avatar",avatar).apply();
+    }
+
+
     /**
      * 获取是否开启无图模式
      */

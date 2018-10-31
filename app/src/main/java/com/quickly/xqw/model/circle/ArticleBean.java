@@ -4,12 +4,11 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 import com.google.gson.Gson;
-import com.quickly.xqw.model.news.NewsArticleBean;
 
 import java.io.Serializable;
 import java.util.List;
 
-public class ArticleBean implements Serializable{
+public class ArticleBean implements Serializable {
 
 
     /**
@@ -71,7 +70,7 @@ public class ArticleBean implements Serializable{
         this.data = data;
     }
 
-    public static class DataBean {
+    public static class DataBean{
         /**
          * hasNext : true
          * list : [{"articleId":441,"author":"夏风爽起~心飞扬","avatar":"https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTLke9yyicW4DA7TicbAt7qwI86iaXIn4I9a6j4JicUsFwXRyMVTDdbiabvDrhXrZs4bgF9hFJquIibw3jkA/132","top":"0","content":"哈哈哈哈哈还哈哈哈哈","pictures":["http://image.luosen365.com/45fe541ca7be4180b14521ab16b69cc1.jpg","http://image.luosen365.com/262694864af649bf87c4d6a535b081e5.jpg"],"location":"信阳市（默认）","views":1,"fabulous":1,"commentsNumber":0,"createTime":"2018-08-29 18:52:05","comments":null},{"articleId":439,"author":"夏风爽起~心飞扬","avatar":"https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTLke9yyicW4DA7TicbAt7qwI86iaXIn4I9a6j4JicUsFwXRyMVTDdbiabvDrhXrZs4bgF9hFJquIibw3jkA/132","top":"0","content":"哈哈KKKKKKKKK","pictures":["http://image.luosen365.com/6931acf2df414e97b4b475d59fe7e725.jpg"],"location":"信阳市（默认）","views":0,"fabulous":1,"commentsNumber":0,"createTime":"2018-08-29 13:48:43","comments":null},{"articleId":437,"author":"夏风爽起~心飞扬","avatar":"https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTLke9yyicW4DA7TicbAt7qwI86iaXIn4I9a6j4JicUsFwXRyMVTDdbiabvDrhXrZs4bgF9hFJquIibw3jkA/132","top":"0","content":"大傻逼一个肾XP一爪子","pictures":["http://image.luosen365.com/d7d8887e28624b32adb86ee43991bab9.jpg"],"location":"雕琢时光(西亚店)","views":1,"fabulous":0,"commentsNumber":0,"createTime":"2018-08-25 16:56:44","comments":null},{"articleId":435,"author":"夏风爽起~心飞扬","avatar":"https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTLke9yyicW4DA7TicbAt7qwI86iaXIn4I9a6j4JicUsFwXRyMVTDdbiabvDrhXrZs4bgF9hFJquIibw3jkA/132","top":"0","content":"大傻逼一个人哈","pictures":["http://image.luosen365.com/8d2242803050461ca973d3bdacf3c7e0.jpg"],"location":"信阳市（默认）","views":0,"fabulous":0,"commentsNumber":0,"createTime":"2018-08-25 16:56:02","comments":null},{"articleId":432,"author":"夏风爽起~心飞扬","avatar":"https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTLke9yyicW4DA7TicbAt7qwI86iaXIn4I9a6j4JicUsFwXRyMVTDdbiabvDrhXrZs4bgF9hFJquIibw3jkA/132","top":"0","content":"用肉在让肉在真肉在","pictures":["http://image.luosen365.com/ef7b7ab3f55c49d1958dbf870c1996aa.jpg"],"location":"信阳市（默认）","views":8,"fabulous":1,"commentsNumber":1,"createTime":"2018-08-14 16:01:16","comments":null},{"articleId":430,"author":"夏风爽起~心飞扬","avatar":"https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTLke9yyicW4DA7TicbAt7qwI86iaXIn4I9a6j4JicUsFwXRyMVTDdbiabvDrhXrZs4bgF9hFJquIibw3jkA/132","top":"0","content":"纸箱子一直一直","pictures":["http://image.luosen365.com/af676270831445619810888b8683ea7f.jpg"],"location":"信阳市（默认）","views":2,"fabulous":1,"commentsNumber":0,"createTime":"2018-08-14 16:00:29","comments":null},{"articleId":418,"author":"古月","avatar":"https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTLsib7FicVN9em77FicKqCMPU1nKM0CM62jicszBfVCZU0uk6icDHFTy6KQtceWoxGu0iccjltribicSR1V6w/132","top":"0","content":"范德萨发大水发打算发多少发","pictures":null,"location":"信阳市（默认）","views":5,"fabulous":2,"commentsNumber":0,"createTime":"2018-08-14 11:39:28","comments":null},{"articleId":416,"author":"夏风爽起~心飞扬","avatar":"https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTLke9yyicW4DA7TicbAt7qwI86iaXIn4I9a6j4JicUsFwXRyMVTDdbiabvDrhXrZs4bgF9hFJquIibw3jkA/132","top":"0","content":"咿呀咿呀哟玩游戏","pictures":["http://image.luosen365.com/7e42569bfadc4065a76a4c3a668ec510.jpg","http://image.luosen365.com/834ce5e4e2f14f65a131a8bc7f793d26.jpg","http://image.luosen365.com/d8f3e60a938e44008fd4fee9de3a1178.jpg","http://image.luosen365.com/e5bd87f127de46749d3e1ed67f4120e4.jpg","http://image.luosen365.com/4778ef84581541c692a1867a3705c0cb.jpg","http://image.luosen365.com/4fcd45994e4a45189c402c8d81733d90.jpg","http://image.luosen365.com/87a8ac472a8145d48ba6878fdc6c983a.jpg","http://image.luosen365.com/048821860d634495b78d356a7e815ac6.jpg"],"location":"信阳市（默认）","views":4,"fabulous":0,"commentsNumber":0,"createTime":"2018-08-14 00:54:29","comments":null}]

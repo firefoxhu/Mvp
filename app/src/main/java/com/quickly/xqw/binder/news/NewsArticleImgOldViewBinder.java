@@ -8,11 +8,11 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
 import com.jakewharton.rxbinding2.view.RxView;
 import com.quickly.xqw.R;
 import com.quickly.xqw.model.news.NewsArticleBean;
-import com.quickly.xqw.module.news.content.NewsContentActivity;
+import com.quickly.xqw.module.news.detail.NewsDetailActivity;
+import com.quickly.xqw.utils.ImageLoader;
 
 import java.util.concurrent.TimeUnit;
 
@@ -28,18 +28,17 @@ public class NewsArticleImgOldViewBinder extends ItemViewBinder<NewsArticleBean.
 
     @Override
     protected void onBindViewHolder(@NonNull ViewHolder holder, @NonNull NewsArticleBean.DataBean.ListBean item) {
+
         final Context context = holder.itemView.getContext();
 
-        Glide.with(context).load(item.getImages().get(0)).thumbnail(0.1f).into(holder.image);
+
+        ImageLoader.load(context,item.getImages().get(0),holder.image);
         holder.title.setText(item.getTitle());
         holder.source.setText(item.getResource());
         holder.views.setText(item.getViews() +"浏览");
         holder.zan.setText(item.getFabulous() + "赞");
 
-        RxView.clicks(holder.itemView)
-                .throttleFirst(3, TimeUnit.SECONDS)
-                .subscribe(o -> NewsContentActivity.launch(item));
-
+        RxView.clicks(holder.itemView).throttleFirst(3, TimeUnit.SECONDS).subscribe(o -> NewsDetailActivity.launch(item));
 
     }
 

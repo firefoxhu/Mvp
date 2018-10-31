@@ -384,4 +384,9 @@ public class ImageBrowserActivity extends BaseActivity {
         }
     }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+
+    }
 }

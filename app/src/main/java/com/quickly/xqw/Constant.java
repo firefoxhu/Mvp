@@ -2,6 +2,8 @@ package com.quickly.xqw;
 
 import android.graphics.Color;
 
+import com.quickly.xqw.module.presenter.NewsContentPresenter;
+
 /**
  * Created by Meiji on 2017/4/13.
  */
@@ -41,7 +43,7 @@ public class Constant {
 
     /**
      * 这段js函数的功能就是，遍历所有的img几点，并添加onclick函数，函数的功能是在图片点击的时候调用本地java接口并传递url过去
-     * {@link com.quickly.xqw.module.news.content.NewsContentPresenter#openImage(String)}
+     * {@link NewsContentPresenter#openImage(String)}
      */
     public static final String JS_INJECT_IMG = "javascript:(function(){" +
             "var objs = document.getElementsByTagName(\"img\"); " +
@@ -53,4 +55,7 @@ public class Constant {
             "    }  " +
             "}" +
             "})()";
+
+    public static final int  AUTHOR_CODE_403 = 403;
+
 }

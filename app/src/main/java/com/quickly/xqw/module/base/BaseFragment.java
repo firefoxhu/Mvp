@@ -21,6 +21,8 @@ import com.uber.autodispose.android.lifecycle.AndroidLifecycleScopeProvider;
 public abstract class BaseFragment<T extends IBasePresenter> extends Fragment implements IBaseView<T> {
 
     protected T presenter;
+
+
     @NonNull
     protected Context mContext;
 

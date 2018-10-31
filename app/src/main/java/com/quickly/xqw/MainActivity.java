@@ -1,105 +1,112 @@
 package com.quickly.xqw;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.content.ContextCompat;
+import android.support.v4.view.ViewPager;
 import android.widget.Toast;
 
-import com.luseen.luseenbottomnavigation.BottomNavigation.BottomNavigationItem;
-import com.luseen.luseenbottomnavigation.BottomNavigation.BottomNavigationView;
-import com.luseen.luseenbottomnavigation.BottomNavigation.OnBottomNavigationItemClickListener;
+import com.quickly.xqw.adapter.TabFragmentStatePagerAdapter;
 import com.quickly.xqw.module.base.BaseActivity;
-import com.quickly.xqw.module.circle.CircleView;
-import com.quickly.xqw.module.news.article.NewsArticleView;
+import com.quickly.xqw.module.circle.CircleUIFragment;
+import com.quickly.xqw.module.news.NewsUIFragment;
+import com.quickly.xqw.module.user.UserUIFragment;
+import com.quickly.xqw.module.welfare.WelfareUIFragment;
+import java.util.ArrayList;
+import java.util.List;
+import devlight.io.library.ntb.NavigationTabBar;
 
-public class MainActivity extends BaseActivity implements OnBottomNavigationItemClickListener {
-
-
-    //底部菜单
-    private BottomNavigationView mBottomNavigationView;
+public class MainActivity extends BaseActivity{
 
     private long exitTime = 0;
 
-    private static final String POSITION ="position";
-    private int position = 0;
+    private NavigationTabBar navigationTabBar;
 
-    private static final int MENU_HOME = 0;
-    private static final int MENU_CIRCLE = 1;
-    private static final int MENU_VIDEO = 2;
-    private Fragment[] fragments = new Fragment[3];
+    private ViewPager viewPager;
 
+    private String[] colors;
 
+    private List<Fragment> fragments;
+
+    private ArrayList<NavigationTabBar.Model> models = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mBottomNavigationView = findViewById(R.id.main_navigation);
 
-        BottomNavigationItem navHome = new BottomNavigationItem("首页", ContextCompat.getColor(this, R.color.colorAccent), R.drawable.ic_launcher_background);
-        BottomNavigationItem navCircle = new BottomNavigationItem("圈子", ContextCompat.getColor(this, R.color.colorPrimary), R.drawable.ic_launcher_background);
-        BottomNavigationItem navVideo = new BottomNavigationItem("视频", ContextCompat.getColor(this, R.color.colorPrimary), R.drawable.ic_launcher_background);
-        mBottomNavigationView.addTab(navHome);
-        mBottomNavigationView.addTab(navCircle);
-        mBottomNavigationView.addTab(navVideo);
-        mBottomNavigationView.setOnBottomNavigationItemClickListener(this);
 
-        //初始化首页fragment
-        fragments[MENU_HOME] = NewsArticleView.newInstance();
+        navigationTabBar = findViewById(R.id.main_bottom_navigation);
+        viewPager = findViewById(R.id.view_pager);
+        colors = getResources().getStringArray(R.array.default_preview);
 
-        getSupportFragmentManager().beginTransaction().add(R.id.main_container, fragments[MENU_HOME]).commit();
+        fragments = new ArrayList<>();
+        fragments.add(new FragmentContainer());
+        fragments.add(new FragmentContainer());
+        fragments.add(new FragmentContainer());
+        fragments.add(new FragmentContainer());
 
-        if(savedInstanceState != null) {
-            mBottomNavigationView.selectTab(savedInstanceState.getInt(POSITION));
-        }else {
-            mBottomNavigationView.selectTab(MENU_HOME);
-        }
-    }
+        viewPager.setAdapter(new TabFragmentStatePagerAdapter(getSupportFragmentManager(), fragments,null));
 
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        // recreate 时记录当前位置 (在 Manifest 已禁止 Activity 旋转,所以旋转屏幕并不会执行以下代码)
-        super.onSaveInstanceState(outState);
-        outState.putInt(POSITION, position);
-    }
 
-    @Override
-    public void onNavigationItemClick(int index) {
-        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        hideFragment(ft);
-        boolean isNull = fragments[index] == null ? true : false;
-        switch (index) {
-            case MENU_HOME:
-                if(isNull) {
-                    fragments[index] = NewsArticleView.newInstance();
-                    ft.add(R.id.main_container,fragments[index]);
+        models.add(new NavigationTabBar.Model.Builder(getResources().getDrawable(R.drawable.ic_index), Color.parseColor(colors[0])).title("首页").build());
+        models.add(new NavigationTabBar.Model.Builder(getResources().getDrawable(R.drawable.ic_circle), Color.parseColor(colors[1])).title("圈子").build());
+        models.add(new NavigationTabBar.Model.Builder(getResources().getDrawable(R.drawable.ic_fuli), Color.parseColor(colors[2])).title("資訊").build());
+        models.add(new NavigationTabBar.Model.Builder(getResources().getDrawable(R.drawable.ic_personal), Color.parseColor(colors[3])).title("个人").build());
+        navigationTabBar.setModels(models);
+
+        // 设置默认选中
+        navigationTabBar.setViewPager(viewPager,0);
+        //IMPORTANT: ENABLE SCROLL BEHAVIOUR IN COORDINATOR LAYOUT
+        navigationTabBar.setBehaviorEnabled(false);
+
+        viewPager.setOffscreenPageLimit(3);
+
+        navigationTabBar.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int i, float v, int i1) {
+                Fragment fragment = fragments.get(i);
+                if (fragment != null) {
+
+                    FragmentContainer container = (FragmentContainer) fragment;
+
+                    if (container.getFragment() == null) {
+                        FragmentTransaction transaction = container.getChildFragmentManager().beginTransaction();
+                        Fragment realFragment = null;
+                        switch (i) {
+                            case 0:
+                                realFragment = new NewsUIFragment();
+                                break;
+                            case 1:
+                                realFragment = new CircleUIFragment();
+                                break;
+                            case 2:
+                                realFragment = new WelfareUIFragment();
+                                break;
+                            case 3:
+                                realFragment = new UserUIFragment();
+                                break;
+                        }
+                        container.setFragment(realFragment);
+                        transaction.replace(R.id.container, realFragment).show(realFragment).commit();
+                    }
                 }
-                break;
-            case MENU_CIRCLE:
-                if(isNull) {
-                    fragments[index] = CircleView.newInstance();
-                    ft.add(R.id.main_container,fragments[index]);
-                }
-                break;
-            case MENU_VIDEO:
-                if(isNull) {
-                    fragments[index] = NewsArticleView.newInstance();
-                    ft.add(R.id.main_container,fragments[index]);
-                }
-                break;
-        }
-        ft.show(fragments[index]).commit();
+            }
+
+            @Override
+            public void onPageSelected(int i) {
+
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int i) {
+
+            }
+        });
 
     }
 
-
-    private void hideFragment(FragmentTransaction ft) {
-        for(Fragment fragment: fragments) {
-            if(fragment != null)
-                ft.hide(fragment);
-        }
-    }
 
     @Override
     public void onBackPressed() {

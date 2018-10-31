@@ -7,6 +7,7 @@ public interface IBasePresenter {
      */
     void doRefresh();
 
+
     /**
      * 显示网络错误
      */

@@ -2,21 +2,13 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.quickly.xqw">
 
-    <!-- if you want to load images from the internet -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_MULTICAST_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
-    <!-- if you want to load images from a file OR from the internet -->
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <!-- zxing -->
-    <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.FLASHLIGHT" />
 
-    <uses-feature android:name="android.hardware.camera" />
-    <uses-feature android:name="android.hardware.camera.autofocus" />
 
-    <uses-permission android:name="android.permission.VIBRATE" />
-    <uses-permission android:name="android.permission.WAKE_LOCK" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
 
     <application
         android:name=".XQWApplication"
@@ -36,9 +28,8 @@
         </activity>
 
         <activity
-            android:name=".module.news.content.NewsContentActivity"
+            android:name=".module.ui.index.NewsContentActivity"
             android:configChanges="orientation|screenSize|uiMode"
-            android:label="@string/title_news_content"
             android:theme="@style/AppTheme.NoActionBar.Slidable"/>
 
         <activity
@@ -47,9 +38,22 @@
             android:theme="@style/AppTheme.NoActionBar.Slidable"/>
 
         <activity
-            android:name=".module.circle.cotent.CircleContentActivity"
+            android:name=".module.ui.LoginActivity"
+            android:launchMode="singleTask"
             android:configChanges="orientation|screenSize|uiMode"
-            android:label="@string/title_news_content"
+            android:theme="@style/AppTheme.NoActionBar.Slidable"/>
+        <activity
+            android:name=".module.ui.index.CategoryNewsActivity"
+            android:configChanges="orientation|screenSize|uiMode"
+            android:theme="@style/AppTheme.NoActionBar.Slidable"/>
+
+        <activity
+            android:name=".module.circle.profile.PersonalProfileActivity"
+            android:configChanges="orientation|screenSize|uiMode"
+            android:theme="@style/AppTheme.NoActionBar.Slidable"/>
+        <activity
+            android:name=".module.news.detail.NewsDetailActivity"
+            android:configChanges="orientation|screenSize|uiMode"
             android:theme="@style/AppTheme.NoActionBar.Slidable"/>
 
     </application>

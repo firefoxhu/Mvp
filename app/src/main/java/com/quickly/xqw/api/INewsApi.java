@@ -17,5 +17,10 @@ public interface INewsApi {
     @GET("news/detail")
     Observable<NewsContent> getNewsDetail(@Query("id") String id);
 
+    @GET("news/category?size=8")
+    Observable<NewsArticleBean> getNewsByCategory(@Query("page") int page,@Query("typeId") String typeId);
+
+
+
 
 }

@@ -13,10 +13,13 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
+
 import com.afollestad.materialdialogs.color.CircleView;
 import com.quickly.xqw.Constant;
 import com.quickly.xqw.R;
 import com.quickly.xqw.utils.SettingUtil;
+import com.quickly.xqw.utils.StatusBarUtil;
 import com.r0adkll.slidr.Slidr;
 import com.r0adkll.slidr.model.SlidrConfig;
 import com.r0adkll.slidr.model.SlidrInterface;
@@ -33,15 +36,19 @@ public abstract class BaseActivity extends AppCompatActivity {
     private static final String TAG = "BaseActivity";
     protected SlidrInterface slidrInterface;
     protected Context mContext;
-    private int iconType = -1;
 
     /**
      * 初始化 Toolbar
      */
-    protected void initToolBar(Toolbar toolbar, boolean homeAsUpEnabled, String title) {
+    public void initToolBar(Toolbar toolbar, boolean homeAsUpEnabled, String title) {
         toolbar.setTitle(title);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(homeAsUpEnabled);
+
+        // 全局设置拉屏的颜色
+        StatusBarUtil.immersive(this, R.color.them,0.5f);
+        // 重置toolbar的错乱位置
+        StatusBarUtil.setPaddingSmart(this, toolbar);
     }
 
     /**
@@ -60,7 +67,6 @@ public abstract class BaseActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        this.iconType = SettingUtil.getInstance().getCustomIconValue();
         this.mContext = this;
         initSlidable();
     }
@@ -68,24 +74,6 @@ public abstract class BaseActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        int color = SettingUtil.getInstance().getColor();
-        int drawable = Constant.ICONS_DRAWABLES[SettingUtil.getInstance().getCustomIconValue()];
-        if (getSupportActionBar() != null)
-            getSupportActionBar().setBackgroundDrawable(new ColorDrawable(color));
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            getWindow().setStatusBarColor(CircleView.shiftColorDown(color));
-            // 最近任务栏上色
-            ActivityManager.TaskDescription tDesc = new ActivityManager.TaskDescription(
-                    getString(R.string.app_name),
-                    BitmapFactory.decodeResource(getResources(), drawable),
-                    color);
-            setTaskDescription(tDesc);
-            if (SettingUtil.getInstance().getNavBar()) {
-                getWindow().setNavigationBarColor(CircleView.shiftColorDown(color));
-            } else {
-                getWindow().setNavigationBarColor(Color.BLACK);
-            }
-        }
     }
 
     @Override
@@ -109,26 +97,6 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     @Override
     protected void onStop() {
-
-        if (iconType != SettingUtil.getInstance().getCustomIconValue()) {
-            new Thread(() -> {
-
-                String act = ".SplashActivity_";
-
-                for (String s : Constant.ICONS_TYPE) {
-                    getPackageManager().setComponentEnabledSetting(new ComponentName(BaseActivity.this, getPackageName() + act + s),
-                            PackageManager.COMPONENT_ENABLED_STATE_DISABLED,
-                            PackageManager.DONT_KILL_APP);
-                }
-
-                act += Constant.ICONS_TYPE[SettingUtil.getInstance().getCustomIconValue()];
-
-                getPackageManager().setComponentEnabledSetting(new ComponentName(BaseActivity.this, getPackageName() + act),
-                        PackageManager.COMPONENT_ENABLED_STATE_ENABLED,
-                        PackageManager.DONT_KILL_APP);
-            }).start();
-        }
-
         super.onStop();
     }
 

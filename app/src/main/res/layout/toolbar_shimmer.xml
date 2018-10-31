@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <android.support.v7.widget.Toolbar style="@style/AppTheme.Toolbar"
+        android:id="@+id/toolbar"
+        android:background="@android:color/transparent"
+        android:layout_marginBottom="0dp"
+        app:navigationIcon="?attr/homeAsUpIndicator"
+        app:layout_collapseMode="pin">
+
+        <android.support.v7.widget.ButtonBarLayout
+            android:id="@+id/button_bar"
+            android:layout_gravity="center"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content">
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/toolbar_avatar"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_marginEnd="@dimen/padding_common_d"
+                android:layout_marginRight="@dimen/padding_common_d"
+                android:src="@mipmap/profile_image"
+                app:civ_border_width="@dimen/division_line"
+                app:civ_border_color="@android:color/white"
+                app:civ_border_overlay="true"/>
+
+            <com.romainpiel.shimmer.ShimmerTextView
+                android:id="@+id/toolbar_title"
+                android:text="信阳圈子"
+                android:layout_gravity="center"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:textColor="@color/Grey900"
+                android:textSize="16sp"
+                android:gravity="center"/>
+        </android.support.v7.widget.ButtonBarLayout>
+    </android.support.v7.widget.Toolbar>
+</LinearLayout>

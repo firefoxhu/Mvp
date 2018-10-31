@@ -8,11 +8,12 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
+
 import com.bumptech.glide.Glide;
 import com.jakewharton.rxbinding2.view.RxView;
 import com.quickly.xqw.R;
 import com.quickly.xqw.model.news.CategoryBean;
+import com.quickly.xqw.module.ui.index.CategoryNewsActivity;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -89,7 +90,7 @@ public class CategoryView extends LinearLayout {
 
                 RxView.clicks(convertView)
                         .throttleFirst(3, TimeUnit.SECONDS)
-                        .subscribe(o -> Toast.makeText(mContext, ""+mListBeans.get(position).getTitle(), Toast.LENGTH_SHORT).show());
+                        .subscribe(o ->CategoryNewsActivity.launch(mListBeans.get(position).getId(),mListBeans.get(position).getTitle(),mListBeans.get(position).getImgUrl()));
             }else {
                 holder = (Holder) convertView.getTag();
             }

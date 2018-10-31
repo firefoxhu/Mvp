@@ -1,7 +1,8 @@
 apply plugin: 'com.android.application'
+apply plugin: 'com.jakewharton.butterknife'
 
 ext {
-    SUPPORT_LIBRARY_VERSION = '28.0.0-rc01'
+    SUPPORT_LIBRARY_VERSION = '28.0.0'
 }
 
 
@@ -38,7 +39,6 @@ dependencies {
     implementation "com.android.support:support-v13:${SUPPORT_LIBRARY_VERSION}"
     implementation "com.android.support:support-annotations:${SUPPORT_LIBRARY_VERSION}"
 
-
     // retrofit 2 自带okhttp3.0
     implementation 'com.squareup.retrofit2:retrofit:2.4.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
@@ -67,8 +67,6 @@ dependencies {
     // 简化版 Adapter
     implementation 'me.drakeet.multitype:multitype:3.4.4'
 
-    // 播放器
-    implementation 'cn.jzvd:jiaozivideoplayer:6.2.12'
 
     // 滑动 侧滑返回
     implementation 'com.r0adkll:slidableactivity:2.0.6'
@@ -88,8 +86,8 @@ dependencies {
 
     // smart刷新
     implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0-alpha-14'
-    implementation 'com.flyco.roundview:FlycoRoundView_Lib:1.1.4@aar'
-    implementation 'com.scwang.smartrefresh:SmartRefreshHeader:1.1.0-alpha-14'//没有使用特殊Header，可以不加这行
+//    implementation 'com.flyco.roundview:FlycoRoundView_Lib:1.1.4@aar'
+//    implementation 'com.scwang.smartrefresh:SmartRefreshHeader:1.1.0-alpha-14'//没有使用特殊Header，可以不加这行
 
     // LeakCanary
     debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.6.1'
@@ -99,17 +97,54 @@ dependencies {
 
     //最新版本
     implementation 'com.youth.banner:banner:1.4.10'
-    //
-    implementation 'com.github.mmin18:realtimeblurview:1.0.6'
 
-    //底部
-    implementation 'com.github.armcha:LuseenBottomNavigation:1.8.2'
 
+
+    // 圆形图像
     implementation 'de.hdodenhof:circleimageview:2.2.0'
 
     // 图片浏览
     implementation 'com.github.chrisbanes.photoview:library:1.2.4'
 
+    // 文字收缩展开
     implementation 'com.jaydenxiao:ExpandableTextView:1.0.0'
+
+    // 滑动验证
+    implementation 'com.luozm.captcha:captcha:1.1.2'
+    // 猫头加载
+    implementation 'com.roger.catloadinglibrary:catloadinglibrary:1.0.4'
+    // 文字闪光
+    implementation 'com.romainpiel.shimmer:library:1.4.0@aar'
+
+    // https://github.com/jpush/aurora-imui/blob/master/README_zh.md IM系统
+
+    // 角标
+    implementation 'q.rorbin:badgeview:1.1.3'
+
+
+
+    // 娱乐的tab
+    implementation 'com.jpardogo.materialtabstrip:library:1.1.1'
+
+    // 需要使用NestedScrollWebview 来加载html
+
+    //Butterknife
+    implementation 'com.jakewharton:butterknife:9.0.0-rc1'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:9.0.0-rc1'
+
+    implementation 'com.flyco.roundview:FlycoRoundView_Lib:1.1.4@aar'
+
+    implementation 'com.github.mmin18:realtimeblurview:1.0.6'
+    // 可能沒用用的的 transformations
+    implementation "jp.wasabeef:glide-transformations:2.0.1"
+
+    // 餃子播放器
+    implementation 'cn.jzvd:jiaozivideoplayer:6.3.1'
+
+
+    // 底部菜单
+    implementation 'devlight.io:navigationtabbar:1.2.5'
+
+    implementation 'com.github.devlight.navigationtabstrip:navigationtabstrip:1.0.4'
 
 }

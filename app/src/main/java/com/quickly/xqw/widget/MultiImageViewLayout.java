@@ -14,6 +14,8 @@ import com.bumptech.glide.RequestManager;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 import com.quickly.xqw.R;
+import com.quickly.xqw.utils.ImageLoader;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,8 +24,6 @@ import java.util.List;
  * 因为使用Glide，View.setTag方法必须使用两个参数的方法：资源文件定义values定义一个ids文件，使用方式R.id.FriendLife_Position,
  * 加了缓存
  *
- * @author Lu JianChao
- *         Created by Lu JianChao on 2016/5/31.
  */
 
 public class MultiImageViewLayout extends LinearLayout {
@@ -263,13 +263,8 @@ public class MultiImageViewLayout extends LinearLayout {
         return (int) (dpValue * scale + 0.5f);
     }
 
-    /**
-     * glide加载图片
-     */
-    private RequestManager glideRequest;
 
     private void setImageGlide(Context mContext, String PicURL, ImageView mImageView) {
-        glideRequest = Glide.with(mContext);
-        glideRequest.load(PicURL).apply(new RequestOptions().diskCacheStrategy(DiskCacheStrategy.ALL)).thumbnail(01f).into(mImageView);
+        ImageLoader.load(mContext,PicURL,mImageView);
     }
 }

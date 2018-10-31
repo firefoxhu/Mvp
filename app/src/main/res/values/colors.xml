@@ -19,6 +19,7 @@
     <color name="textColorPrimary_night">#616161</color>
     <color name="viewBackground_night">#212a2f</color>
 
+    <color name="white">#FFFFFF</color>
     <color name="White">#FFFFFF</color>
     <color name="Black">#000000</color>
 
@@ -64,4 +65,6 @@
     <color name="colorTextContent">#444444</color>
     <color name="colorTextAssistant">#888888</color>
     <color name="colorDivision">#33aaaaaa</color>
+
+    <color name="them">#423752</color>
 </resources>

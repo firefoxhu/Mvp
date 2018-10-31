@@ -122,6 +122,7 @@ public class CommentListTextView extends AppCompatTextView {
     }
 
     public void setData (List<CommentInfo> mInfos) {
+
         this.mInfos = mInfos;
         /**
          * textview必须设置，否则自定义点击事件没响应

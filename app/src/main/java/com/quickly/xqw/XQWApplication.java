@@ -1,9 +1,8 @@
 package com.quickly.xqw;
-
 import android.app.Application;
 import android.content.Context;
+import android.os.Handler;
 import android.support.v7.app.AppCompatDelegate;
-
 import com.quickly.xqw.utils.SettingUtil;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.DefaultRefreshFooterCreator;
@@ -13,18 +12,21 @@ import com.scwang.smartrefresh.layout.api.RefreshHeader;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.footer.ClassicsFooter;
 import com.scwang.smartrefresh.layout.header.ClassicsHeader;
-
 import java.util.Calendar;
 
 public class XQWApplication extends Application {
 
-
     public static Context appContext;
+
+    public static Handler handler;
+    public static int mainThreadId;
 
     @Override
     public void onCreate() {
         super.onCreate();
         appContext  = getApplicationContext();
+        handler = new Handler();
+        mainThreadId = android.os.Process.myTid();
 
         initTheme();
 

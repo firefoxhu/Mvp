@@ -221,5 +221,8 @@ public class NewsContent {
         public void setImages(List<String> images) {
             this.images = images;
         }
+
+
+
     }
 }

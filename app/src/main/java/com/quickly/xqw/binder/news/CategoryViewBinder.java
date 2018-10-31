@@ -13,7 +13,7 @@ import com.quickly.xqw.adapter.CategoryView;
 import com.quickly.xqw.api.HttpUri;
 import com.quickly.xqw.api.ICategoryApi;
 import com.quickly.xqw.model.news.CategoryBean;
-import com.quickly.xqw.utils.RetrofitFactory;
+import com.quickly.xqw.utils.RetrofitFactory9001;
 
 import java.util.Arrays;
 import java.util.List;
@@ -33,7 +33,7 @@ public class CategoryViewBinder extends ItemViewBinder<CategoryBean.DataBean.Lis
 
     @Override
     protected void onBindViewHolder(@NonNull ViewHolder holder, @NonNull CategoryBean.DataBean.ListBean item) {
-        RetrofitFactory.getRetrofit(HttpUri.SERVER_IP).create(ICategoryApi.class).getNewsCategory()
+        RetrofitFactory9001.getRetrofit().create(ICategoryApi.class).getNewsCategory()
                 .map(data->data.getData().getList())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

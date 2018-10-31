@@ -8,11 +8,11 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
 import com.jakewharton.rxbinding2.view.RxView;
 import com.quickly.xqw.R;
 import com.quickly.xqw.model.news.NewsArticleBean;
-import com.quickly.xqw.module.news.content.NewsContentActivity;
+import com.quickly.xqw.module.news.detail.NewsDetailActivity;
+import com.quickly.xqw.utils.ImageLoader;
 
 import java.util.concurrent.TimeUnit;
 
@@ -30,14 +30,14 @@ public class NewsArticleImgViewBinder extends ItemViewBinder<NewsArticleBean.Dat
     protected void onBindViewHolder(@NonNull ViewHolder holder, @NonNull NewsArticleBean.DataBean.ListBean item) {
         final Context context = holder.itemView.getContext();
 
-        Glide.with(context).load(item.getImages().get(0)).thumbnail(0.1f).into( holder.iv_image);
-        Glide.with(context).load(item.getImages().get(0)).thumbnail(0.1f).into( holder.iv_media);
+        ImageLoader.load(context,item.getImages().get(0),holder.iv_image);
+        ImageLoader.load(context,item.getImages().get(0),holder.iv_media);
         holder.tv_title.setText(item.getTitle());
         holder.tv_extra.setText(item.getResource() + " - " + item.getViews() +"浏览");
 
         RxView.clicks(holder.itemView)
                 .throttleFirst(3, TimeUnit.SECONDS)
-                .subscribe(o -> NewsContentActivity.launch(item));
+                .subscribe(o -> NewsDetailActivity.launch(item));
 
 
     }

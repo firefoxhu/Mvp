@@ -2,12 +2,22 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:padding="5dp"
+    android:background="@color/Grey400">
     <EditText
         android:id="@+id/comment_content"
-        android:hint="评论一下吧"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="80dp"
+        android:layout_marginLeft="3dp"
+        android:layout_marginRight="3dp"
+        android:background="@color/Grey200"
+        android:gravity="top|left"
+        android:hint="请输入评论内容(最多为50字)"
+        android:textColor="@color/Black"
+        android:maxLength="50"
+        android:textColorHint="#696969"
+        android:textSize="16sp" />
 
     <TextView
         android:layout_below="@id/comment_content"
@@ -16,5 +26,10 @@
         android:text="评论"
         android:textSize="24dp"
         android:layout_width="60dp"
-        android:layout_height="30dp" />
+        android:gravity="center_horizontal"
+        android:background="@color/Green"
+        android:textColor="@color/white"
+        android:layout_height="30dp"
+        android:layout_marginRight="3dp"
+        android:layout_marginTop="3dp"/>
 </RelativeLayout>

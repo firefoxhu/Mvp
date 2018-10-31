@@ -1,27 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MainActivity">
-    <FrameLayout
-        android:id="@+id/main_container"
+<android.support.design.widget.CoordinatorLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@+id/main_navigation"/>
+        android:layout_height="match_parent">
+        <!--android:fitsSystemWindows="true"
+                android:background="#423752"-->
 
-    <com.luseen.luseenbottomnavigation.BottomNavigation.BottomNavigationView
-        android:id="@+id/main_navigation"
-        android:layout_width="match_parent"
-        android:layout_height="25dp"
-        android:layout_alignParentBottom="true"
-        app:bnv_active_color="@color/colorPrimary"
-        app:bnv_active_text_size="@dimen/bottom_navigation_text_size_active"
-        app:bnv_colored_background="false"
-        app:bnv_inactive_text_size="@dimen/bottom_navigation_text_size_inactive"
-        app:bnv_shadow="true"
-        app:bnv_tablet="false"
-        app:bnv_viewpager_slide="false"
-        app:bnv_with_text="true"/>
-</RelativeLayout>
+        <android.support.v4.view.ViewPager
+            android:id="@+id/view_pager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            android:layout_marginBottom="60dp"/>
+
+        <devlight.io.library.ntb.NavigationTabBar
+            android:id="@+id/main_bottom_navigation"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_gravity="bottom"
+            app:ntb_titled="true"/>
+
+</android.support.design.widget.CoordinatorLayout>
